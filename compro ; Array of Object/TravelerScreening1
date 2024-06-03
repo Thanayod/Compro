@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+class Traveler {
+    String PassportID;
+    String country;
+    String day;
+    double temp;
+    int check;
+
+    Traveler(String PassportID, String country, String day, double temp, int check) {
+        this.PassportID = PassportID;
+        this.country = country;
+        this.day = day;
+        this.temp = temp;
+        this.check = check;
+    }
+
+    void printInfo() {
+        if (check == -1) {
+            System.out.println(PassportID + " STATE-QUARANTINE");
+        }
+        else {
+            System.out.println(PassportID + " SELF-QUARANTINE");
+        }
+    }
+}
+
+public class TravelerScreening1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int check = ' ';
+        Traveler[] travel = new Traveler[n];
+        
+        for (int i = 0; i < n; i++) {
+            String PassportID = sc.next();
+            String country = sc.next();
+            String day = sc.next();
+            double temp = sc.nextDouble();
+            
+            
+            if (country.equalsIgnoreCase("JAPAN") || country.equalsIgnoreCase("GERMANY")
+                    || country.equalsIgnoreCase("KOREA") ||
+                    country.equalsIgnoreCase("CHINA") || country.equalsIgnoreCase("TAIWAN")
+                    || country.equalsIgnoreCase("FRANCE") ||
+                    country.equalsIgnoreCase("SINGAPORE") || country.equalsIgnoreCase("ITALY")
+                    || country.equalsIgnoreCase("IRAN")) {
+                    //check = -1;
+                    travel[i] = new Traveler(PassportID, country, day, temp, -1);
+            } else {
+                if (temp > 37.5) {
+                    //check = -1;
+                    travel[i] = new Traveler(PassportID, country, day, temp, -1);
+                } else {
+                    //check = 0;
+                    travel[i] = new Traveler(PassportID, country, day, temp, 0);
+                }
+            }
+            travel[i].printInfo();
+        }
+    }
+}
