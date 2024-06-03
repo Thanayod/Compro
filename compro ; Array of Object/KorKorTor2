@@ -1,0 +1,65 @@
+
+import java.util.Scanner;
+
+class Precinct{
+    String title;
+    String[] name;
+    int[] count;
+    int max = 0;
+
+    Precinct(String title, String[]name){
+        this.title = title;
+        this.name = name;
+        count = new int[name.length];
+    }
+    void count(int count){
+        if(count<0 || count>=name.length){
+            System.out.println("invalid number");
+        }
+        else {
+            this.count[count]++;
+            System.out.println(name[count]+ " " + this.count[count]);
+            if(this.count[count]>=max){
+                max = this.count[count];
+            }
+        }
+    }
+    void printInfo(){
+        for(int i=0; i<name.length; i++){
+            System.out.println(i+1+" " + name[i] + " " + count[i]);
+        }
+    }
+    void printMax(){
+        for(int i=0; i<name.length; i++){
+            if(count[i]>=max){
+                System.out.println(i+1 + " " + name[i] + " " + count[i]);
+            }
+        }
+    }
+}
+public class KorKorTor2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String title = sc.next();
+        int N = sc.nextInt();
+        String[] name = new String[N];
+        for(int i=0;i<N; i++){
+            name[i] = sc.next();
+        }
+        Precinct nobita = new Precinct(title, name);
+        int K = sc.nextInt();
+        for(int i=0; i<K; i++){
+            int order = sc.nextInt();
+            if(order ==1){
+                int number = sc.nextInt();
+                nobita.count(number-1);
+            }
+            else if(order == 2){
+                nobita.printInfo();
+            }
+            else if(order == 3){
+                nobita.printMax();
+            }
+        }
+    }
+}
