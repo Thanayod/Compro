@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+class Bus {
+    String id;
+    int type;
+    int seats;
+    int seat2 = 0;
+    Bus(String id, int type, int seats){
+        this.id = id;
+        this.type = type;
+        this.seats = seats;
+    }
+    void printStats() {
+        System.out.println(id);
+        if(type==1){
+            System.out.println("Fan");
+        }
+        else if(type==2){
+            System.out.println("P1");
+        }
+        else if(type==3){
+            System.out.println("VIP");
+        }
+        System.out.println(seat2 + " " + seats);
+        System.out.println("Active");
+    }
+}
+
+public class BusCompany1 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String id = scan.next();
+        int type = scan.nextInt();
+        int seats = scan.nextInt();
+        Bus b = new Bus(id, type, seats);
+        b.printStats();
+    }
+}
