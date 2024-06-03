@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class Winner {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int map[][] = new int[n + 1][m + 1];
+
+        int gunin = 0;
+        int gunmiss = 0;
+        int gunagain = 0;
+        int gunmissagain = 0;
+        int gunout = 0;
+        int count = 0;
+        int target = 0;
+        int total = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                map[i][j] = sc.nextInt();
+                if (map[i][j] == 1) {
+                    count++;
+                }
+            }
+        }
+        int k = sc.nextInt();
+        int a = 0;
+        int b = 0;
+
+        for (int i = 1; i <= k; i++) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            if (x < 1 || x > n || y < 1 || y > m) {
+                gunout += 1;
+            } else if (map[x][y] == 1) {
+                gunin += 1;
+                map[x][y] += 1;
+                count -= 1;
+                if(b==0){
+                    b=i;
+                }
+            } else if (map[x][y] == 0) {
+                gunmiss += 1;
+                map[x][y] -= 1;
+            } else if (map[x][y] < 0) {
+                gunmissagain += 1;
+            } else if (map[x][y] > 1) {
+                gunagain += 1;
+            }
+            if(count==0 && a==0){
+                a = i;
+            }
+        }
+        System.out.println(gunin);
+        System.out.println(gunmiss);
+        System.out.println(gunagain);
+        System.out.println(gunmissagain);
+        System.out.println(gunout);
+
+        if(gunin==0){
+            System.out.println("battleship -1");
+        }
+        else if(count>0){
+            System.out.println("battleship " + b);
+        }
+        else if(count==0){
+            System.out.println("attacker " + a);
+        }
+        
+        
+    }
+}
