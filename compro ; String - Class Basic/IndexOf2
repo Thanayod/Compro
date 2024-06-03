@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class indexOf2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        String word = scan.nextLine();
+        
+        //ใช้เมธอด indexOf(??)
+        if(str.indexOf(word)<0){
+            System.out.println("string not found");
+        }
+        else {
+        for(int i=0; i<str.length(); i++){
+            int x = str.indexOf(word,i);
+              if(x!=-1){
+                System.out.print(x+1 + " ");
+                i=x;
+                }
+            }
+        } 
+    }
+}
