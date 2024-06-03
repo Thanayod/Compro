@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+class ZooTicketA1 {
+    // Enter your code here
+    boolean Ischild;
+    boolean ticket = false;
+    boolean car = false;
+
+    ZooTicketA1(boolean Ischild, boolean car) {
+        this.Ischild = Ischild;
+        this.ticket = false;
+        this.car = false;
+
+    }
+
+    boolean enterZoo(int height) {
+        if (!ticket) {
+            if (!Ischild) {
+                ticket = !ticket;
+                return true;
+            } else {
+                if (height <= 120) {
+                    ticket = !ticket;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+    }
+
+    boolean useRide() {
+        if (ticket && !car) {
+            car = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+public class ZooTicketAgain2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        final int N = scan.nextInt();
+        ZooTicketA1[] tickets = new ZooTicketA1[N];
+        for (int i = 0; i < N; ++i) {
+            int type = scan.nextInt();
+            if (type == 1)
+                tickets[i] = new ZooTicketA1(false, false);
+            else
+                tickets[i] = new ZooTicketA1(true, true);
+        }
+
+        final int Q = scan.nextInt();
+        for (int i = 0; i < Q; ++i) {
+            int id = scan.nextInt();
+            int type = scan.nextInt();
+            if (type == 1) {
+                int height = scan.nextInt();
+                boolean result = tickets[id - 1].enterZoo(height);
+                System.out.println(result);
+            } else if (type == 2) {
+                boolean result_ride = tickets[id - 1].useRide();
+                System.out.println(result_ride);
+            }
+        }
+    }
+}
