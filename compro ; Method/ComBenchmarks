@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+class ComAndBench {
+    int totalPrice;
+    int WindStrike;
+    int PastMark;
+    int Soreal;
+    int SiSandro;
+    int cpuPow;
+    int gpuPow;
+    int ramAmt;
+    int cpuPrc;
+    int gpuPrc;
+    int ramPrc;
+
+    ComAndBench(int cpuPow, int gpuPow, int ramAmt, int cpuPrc, int gpuPrc, int ramPrc) {
+        this.cpuPow = cpuPow;
+        this.gpuPow = gpuPow;
+        this.ramAmt = ramAmt;
+        this.cpuPrc = cpuPrc;
+        this.gpuPrc = gpuPrc;
+        this.ramPrc = ramPrc;
+    }
+
+    int runWindStrike() {
+        if (ramAmt <= 4) {
+            WindStrike = (cpuPow + gpuPow)/2;
+        }
+
+        else if(ramAmt>8){
+            WindStrike = (cpuPow + gpuPow)*2;
+        }
+        else {
+            WindStrike = cpuPow + gpuPow;
+        }
+        return this.WindStrike;
+    }
+
+    int runPastMark() {
+        if (cpuPow > gpuPow) {
+            PastMark = cpuPow;
+        } else {
+            PastMark = gpuPow;
+        }
+        return PastMark;
+    }
+
+    int runSoreal() {
+        if (PastMark > 300) {
+            Soreal = gpuPow + (cpuPow / 2);
+        } else {
+            Soreal = (gpuPow + (cpuPow / 2))/2;
+        }
+        return Soreal;
+    }
+
+    boolean runSiSandro() {
+        this.SiSandro = (ramAmt * 100) + cpuPow;
+        if (ramAmt >= 4) {
+            return true;
+        } else {
+            System.out.println("SiSandro Failed");
+            return false;
+        }
+    }
+
+    void runAllBenches() {
+        if(runSiSandro()){
+            System.out.println("WindStrike: " + runWindStrike());
+            System.out.println("PastMark: " + runPastMark());
+            System.out.println("Soreal: " + runSoreal());
+
+            if(runSiSandro()){
+                int v = SiSandro;
+                System.out.println("SiSandro: " + v);
+            }
+        }
+        else {
+            System.out.println("WindStrike: " + runWindStrike());
+            System.out.println("PastMark: " + runPastMark());
+            System.out.println("Soreal: " + runSoreal());
+            System.out.println("SiSandro: Failed");
+            
+        }
+    }
+    void reportPerfPerPrice(){
+        int k = cpuPrc+gpuPrc+ramPrc;
+        int sum = runWindStrike()+runPastMark()+runSoreal();
+        int Performance_per_Price = sum/k;
+        System.out.println("Performance per Price = " + Performance_per_Price);
+    }
+}
+
+public class ComBenchmarks {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int cpuPow = scan.nextInt();
+        int gpuPow = scan.nextInt();
+
+        int ramAmt = scan.nextInt();
+        int cpuPrc = scan.nextInt();
+
+        int gpuPrc = scan.nextInt();
+        int ramPrc = scan.nextInt();
+        ComAndBench comB = new ComAndBench(cpuPow, gpuPow, ramAmt, cpuPrc, gpuPrc, ramPrc);
+        comB.runAllBenches();
+        comB.reportPerfPerPrice();
+    }
+}
