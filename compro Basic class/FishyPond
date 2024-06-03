@@ -1,0 +1,65 @@
+import java.util.Scanner;
+
+class Pond {
+    public int d;
+    public int r;
+    public int n;
+
+    Pond(int d, int r){
+        this.d = d;
+        this.r = r;
+        this.n = 20*(d*r);
+
+        printInfo();
+    }
+    public int reproductive(int h){
+        n+=((h*r*d)/4) + ((h*n)/3);
+        return n;
+    }
+    public void  takeFish(int k){
+        if(n>0){
+            n-=k;
+        }
+        if(n<0){
+            n = 0;
+        }
+    }
+    public void expand(int p){
+        if(r>=0){
+            r+=p;
+        }
+        if(r>50){
+            r = 50;
+        }
+    }
+    public void printInfo(){
+        System.out.println("Depth " + d + ", Radius " + r + ", Fish " + n);
+    }
+}
+
+public class FishyPond {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        /* create a pond object using constructor */
+        int d = sc.nextInt();
+        int r = sc.nextInt();
+        Pond fish = new Pond(d, r);
+
+        while (true) {
+            int C = sc.nextInt();
+            if (C == 0) {
+                break;
+            } else if (C == 1) {
+                int k = sc.nextInt();
+                fish.takeFish(k);
+            } else if (C == 2) {
+                int h = sc.nextInt();
+                fish.reproductive(h);
+            } else if (C == 3) {
+                int p = sc.nextInt();
+                fish.expand(p);
+            }
+            fish.printInfo();
+        }
+    }
+}
