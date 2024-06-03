@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+class Tumbol_2 {
+    String name;
+    int latitude;
+    int longtitude;
+    int population;
+    int availBudget;
+
+    Tumbol_2(String name, int latitude, int longtitude, int population) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
+        this.population = population;
+        this.availBudget = population * 5_000;
+    }
+
+    int allocateBudget(int[] budget) {
+        boolean print = false;
+        int availBudgetOriginal = this.availBudget;
+        for (int i = 0; i < budget.length; i++) {
+            if (this.availBudget > budget[i]) {
+                System.out.print(i + 1 + " ");
+                print = true;
+                this.availBudget -= budget[i];
+            }
+        }
+        if (!print) {
+            System.out.println("none");
+        }
+        else {
+            System.out.println();
+        }
+        return availBudgetOriginal - this.availBudget;
+    }
+}
+
+public class Tumbol2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        Tumbol_2[] tb = new Tumbol_2[N];
+        for (int i = 0; i < N; i++) {
+            String name = sc.next();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            int population = sc.nextInt();
+            tb[i] = new Tumbol_2(name, x, y, population);
+        }
+
+        int total = 0;
+        for (int i = 0; i < N; i++) {
+            int k = sc.nextInt();
+            int []budgets = new int[k];
+            for(int j=0; j<k; j++){
+                budgets[j] = sc.nextInt();
+            }
+            total += tb[i].allocateBudget(budgets);
+        }
+        System.out.println(total);
+    }
+}
