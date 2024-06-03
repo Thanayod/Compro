@@ -1,0 +1,118 @@
+import java.util.Scanner;
+
+class ZooTicket {
+    String name;
+    boolean ride = false;
+    boolean seal = false;
+    boolean tiger = false;
+
+    ZooTicket(String name) {
+        this.name = name;
+    }
+
+    void bookRide() {
+        ride = true;
+    }
+
+    boolean useRide() {
+        if (ride) {
+            System.out.println("okay");
+            ride = false;
+            return true;
+        } else {
+            System.out.println("no");
+            return false;
+        }
+    }
+
+    void bookSealShow() {
+        seal = true;
+    }
+
+    boolean enterSealShow() {
+        if (seal) {
+            System.out.println("okay");
+            seal = false;
+            return true;
+        } else {
+            System.out.println("no");
+            return false;
+        }
+    }
+
+    void bookTigerShow() {
+        tiger = true;
+    }
+
+    boolean enterTigerShow() {
+        if (tiger) {
+            System.out.println("okay");
+            tiger = false;
+            return true;
+        } else {
+            System.out.println("no");
+            return false;
+        }
+    }
+
+    void summarize() {
+        System.out.println(name);
+        int ticket = 100;
+        if (ride) {
+            ticket += 40;
+            System.out.println("Ride");
+        }
+        if (seal) {
+            ticket += 50;
+            System.out.println("Seal");
+        }
+        if (tiger) {
+            ticket += 65;
+            System.out.println("Tiger");
+        }
+        System.out.println(ticket);
+    }
+}
+
+public class ZooTicket2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String name = scan.next();
+        ZooTicket ticket = new ZooTicket(name);
+
+        while (true) {
+            int service = scan.nextInt();
+            if (service == 0) {
+                break;
+            } else if (service == 1) {
+                ticket.bookRide();
+            } else if (service == 2) {
+                ticket.bookSealShow();
+            } else if (service == 3) {
+                ticket.bookTigerShow();
+            }
+        }
+        ticket.summarize();
+        int n = scan.nextInt();
+        for (int i = 0; i < n; i++) {
+            int num = scan.nextInt();
+            switch (num) {
+                case 1:
+                    boolean rid = ticket.useRide();
+                    System.out.println(rid);
+                    break;
+
+                case 2:
+                    boolean sea = ticket.enterSealShow();
+                    System.out.println(sea);
+                    break;
+
+                case 3:
+                    boolean tig = ticket.enterTigerShow();
+                    System.out.println(tig);
+                    break;
+
+            }
+        }
+    }
+}
