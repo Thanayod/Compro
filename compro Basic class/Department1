@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Dep{
+    int ministryBudget;
+    int eduFee;
+    int serviceFee;
+    int donation;
+
+    public Dep(int people, int student){
+        computeIncome(people, student);
+
+    }
+    void computeIncome(int people, int student){
+        ministryBudget = people*500_000 + student*3_000;
+        eduFee = student*5_000;
+        serviceFee = 300_000;
+        donation = 100_000;
+    }
+    void printReport(){
+        System.out.println("ministry budget = " + ministryBudget);
+        System.out.println("education fee = " + eduFee);
+        System.out.println("service fee = " + serviceFee);
+        System.out.println("donation = " + donation);
+    }
+}
+
+public class Department1 {
+   
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int people = sc.nextInt();
+        int student = sc.nextInt();
+        Dep menu = new Dep(people, student);
+        menu.printReport();
+    }
+}
