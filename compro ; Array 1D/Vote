@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Vote {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int number = sc.nextInt();
+        int size = sc.nextInt();
+        int []people = new int[size];
+        int max = Integer.MIN_VALUE;
+        int winner = 0;
+
+        for(int i=0; i<size; i++){
+            people[sc.nextInt()-1]++;
+        }
+        for(int i=0; i<size; i++){
+            if(people[i]>max){
+                max = people[i];
+                winner = i+1;
+            }
+        }
+        System.out.println(winner);
+        System.out.print(max);
+    }
+}
