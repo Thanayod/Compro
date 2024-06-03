@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+class Ethanol {
+    int water;
+    int bottle;
+    int less;
+
+    Ethanol(int water, int bottle, int less_) {
+        this.water = water;
+        this.bottle = bottle;
+        this.less = bottle;
+    }
+
+    int used(int bottle) {
+        less = less - bottle;
+        if (less<0) {
+            less = 0;
+        }
+        return less;
+    }
+
+    void printInfo() {
+        System.out.println("Ethanol " + water + "% " + "(" + less + "ml./" + bottle + "ml.)");
+    }
+}
+
+public class Ethanol1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int water = sc.nextInt();
+        int bottle = sc.nextInt();
+        int less_bottle = sc.nextInt();
+
+        Ethanol E = new Ethanol(water, bottle, less_bottle);
+        E.used(less_bottle);
+        E.printInfo();
+    }
+}
