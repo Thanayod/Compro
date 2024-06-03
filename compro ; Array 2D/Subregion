@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Subregion {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int [][]arr = new int[n+1][m+1];
+        int mark_p = sc.nextInt();
+        int mark_q = sc.nextInt();
+        int size_h = sc.nextInt();
+        int size_w = sc.nextInt();
+
+        if(mark_p<=0 || mark_q<=0 || mark_p+size_h-1>n || mark_q+size_w-1>m || mark_p>n || mark_q>m){
+            System.out.println("invalid input");
+            return;
+        }
+
+        for(int i=1; i<=n;i++){
+            for(int j=1; j<=m; j++){
+                arr[i][j] = 0;
+            }
+        }
+        for(int i=mark_p; i<=mark_p+size_h-1;i++){
+            for(int j=mark_q; j<=mark_q+size_w-1;j++){
+                arr[i][j] = 1;
+            }
+        }
+        for(int i=1; i<=n;i++){
+            for(int j=1; j<=m; j++){
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
