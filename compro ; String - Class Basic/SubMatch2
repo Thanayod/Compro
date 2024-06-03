@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class SubMatch2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String a = scan.next();
+        String b = scan.next();
+        //System.out.println(??);
+        
+        //ใช้เมธอด indexOf(??)
+        //ใช้เมธอด sutstring(??)
+        for(int i=0; i<b.length()-2; i++){
+            int word = a.indexOf(b.substring(i,i+3));
+            if(word>=0){
+                System.out.println(word+1);
+            }
+            else {
+                System.out.println("No");
+            }
+        }    
+    }
+}
+
