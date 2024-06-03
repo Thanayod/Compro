@@ -26,8 +26,5 @@ public class AgeReport {
         int y2 = sc.nextInt();
         int person = ageReport(arr, age, n, y1, y2);
         System.out.println("There are " +  person +  " persons in age range of " +  y1 +  " to "  + y2);
-        
-        
-    
     }
 }
