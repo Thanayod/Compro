@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class reportLoad {
+    static void reportLoad(int cpuAll, int ramAll, int cpuUsed, int ramUsed) {
+        int cpu = 0;
+        int ram = 0;
+        if (cpuUsed > 0) {
+            cpu = (cpuUsed * 100) / cpuAll;
+
+        }
+        if (ramUsed > 0) {
+            ram = (ramUsed * 100) / ramAll;
+
+        }
+        System.out.println("CPU: " + cpuUsed +"/"+cpuAll+" ("+cpu+"%)");
+        System.out.println("RAM: " + ramUsed +"/"+ramAll+" ("+ram+"%)");
+
+        if (cpu >= 80) {
+            System.out.println("Limited CPU power");
+        }
+        if (ram >= 80) {
+            System.out.println("Limited RAM availability");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int cpuAll = sc.nextInt();
+        int ramAll = sc.nextInt();
+        int cpuUsed = sc.nextInt();
+        int ramUsed = sc.nextInt();
+
+        reportLoad(cpuAll, ramAll, cpuUsed, ramUsed);
+
+    }
+}
