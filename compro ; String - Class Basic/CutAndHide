@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class CutAndHide {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+        char word = sc.next().charAt(0);
+        int first = a.indexOf(word);
+        int last = a.lastIndexOf(word);
+
+        System.out.print(a.charAt(first));
+
+        for(int i=first+1; i<last; i++){
+            if(a.charAt(i)!=word){
+                System.out.print(a.charAt(i));
+            }
+        }
+        System.out.print(a.charAt(last));
+    }
+}
