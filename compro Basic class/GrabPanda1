@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+class FoodOrder {
+    String name;
+    int N;
+    int price;
+    int foodtotal = 0;
+    int Deli = 0;
+
+    FoodOrder(String name) {
+        this.name = name;
+    }
+
+    int addFood(int price) {
+        foodtotal += price;
+        return foodtotal;
+    }
+
+    void finalizeReceipt() {
+        if (foodtotal <= 50) {
+            Deli = 20;
+        } else if (foodtotal > 50 && foodtotal <= 150) {
+            Deli = 10;
+        } else {
+            Deli = 0;
+        }
+        System.out.println(name);
+        System.out.println(foodtotal);
+        System.out.println(Deli);
+        System.out.println(foodtotal + Deli);
+    }
+}
+
+public class GrabPanda1 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String name = scan.next();
+        int N = scan.nextInt();
+
+        FoodOrder order = new FoodOrder(name);
+        for (int i = 0; i < N; ++i) {
+            int price = scan.nextInt();
+            order.addFood(price);
+        }
+        order.finalizeReceipt();
+    }
+}
