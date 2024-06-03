@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+class Ethanol {
+    int water;
+    int bottle;
+    int less;
+
+    Ethanol(int water, int bottle) {
+        this.water = water;
+        this.bottle = bottle;
+        this.less = bottle;
+    }
+
+    int used(int bottle) {
+        less = less - bottle;
+        if (less<0) {
+            less = 0;
+        }
+        return less;
+    }
+
+}
+
+public class Ethanol2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Ethanol eth[] = new Ethanol[n];
+
+        for(int i=0;i<eth.length; i++){
+            int water = sc.nextInt();
+            int bottle = sc.nextInt();
+            eth[i] = new Ethanol(water, bottle);
+            eth[i].less = sc.nextInt();
+        }
+        int eth75 = sc.nextInt();
+        int eth95 = sc.nextInt();
+
+        for(int i=0; i<eth.length;i++){
+            if(eth[i].water == 75){
+                // 100 - 50;
+                int canPut = eth[i].bottle - eth[i].less;
+                // canPut -> 50, eth75 -> 400
+                int putIn = Math.min(canPut, eth75);
+                eth75 -= putIn;
+                System.out.print((i+1) + ":" + putIn + " ");
+            }
+        }
+        System.out.println();
+        for(int i=0; i<eth.length; i++){
+            if(eth[i].water == 95){
+                int canPut = eth[i].bottle - eth[i].less;
+                int putIn = Math.min(canPut, eth95);
+                eth95 -= putIn;
+                System.out.print((i+1) + ":" + putIn + " ");
+            }
+        }
+    }
+}
