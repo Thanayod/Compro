@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class LongestString2 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -15,10 +14,7 @@ public class LongestString2 {
                 max = x;
                 longestStr = str;
             }
-            
         }
-        System.out.print(longestStr);
-        
-        
+        System.out.print(longestStr); 
     }
 }
