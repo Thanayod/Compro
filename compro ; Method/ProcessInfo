@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class ProcessInfo {
+    static boolean  listProcesses(String []inform,int []ram,int maxram){
+        int count = 0;
+        for(int i=0; i<inform.length; i++){
+            if(ram[i]<10){
+                System.out.println(inform[i] + " " + ram[i]);
+            }
+            else if(ram[i]>=10){
+                System.out.println(inform[i] + "* " + ram[i]);
+            }
+            count+=ram[i];
+        }
+        System.out.println("RAM used = " + count + " out of " + maxram);
+
+        if(count>maxram){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String inform[] = new String[n];
+        int ram[] = new int[n];
+
+        for(int i=0; i<n; i++){
+            inform[i] = sc.next();
+            ram[i] = sc.nextInt();
+        }
+        int maxram = sc.nextInt();
+
+        boolean result =  listProcesses(inform, ram, maxram);
+        
+        if(!result){
+            System.out.println("Not enough RAM");
+        }
+        else {
+            System.out.println("Sufficient RAM");
+        }
+    }
+}
