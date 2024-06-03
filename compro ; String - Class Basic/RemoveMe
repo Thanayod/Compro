@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class RemoveMe {
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       String x = sc.nextLine();
+       
+       int n = sc.nextInt();
+       for(int i=0;i<n;i++){
+          int z = sc.nextInt();
+          if(z==1){
+            String y = sc.next();
+            int g = x.indexOf(y);
+            if(g!=-1){
+            String d = x.substring(g+y.length(),x.length());
+            String v = x.substring(0,g);
+            x = v+d;
+            System.out.println(x);
+            }else{
+                System.out.println(x);
+            }
+          }
+          else if(z==2){
+            String y = sc.next();
+            int g = x.lastIndexOf(y);
+            if(g!=-1){
+            String d = x.substring(0,g);
+            String v = x.substring(g+y.length(),x.length());
+            x=d+v;
+            System.out.println(x);
+            }
+            else{
+                System.out.println(x);
+            }
+          }
+       }
+    }
+}
