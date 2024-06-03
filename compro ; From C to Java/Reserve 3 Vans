@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class reserve_3_vans {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        int x = scan.nextInt();
+        int A = 0;
+        int B = 0;
+        int C = 0;
+        for(int i=0; i<x; i++){
+            int N = scan.nextInt();
+            if(i==0){
+                A = N;
+                System.out.println("A");
+            }else{
+                if(A<=B && A<=C){
+                    A+=N;
+                    System.out.println("A");
+                }else if(B<=A && B<=C){
+                    B+=N;
+                    System.out.println("B");
+                }else if(C<=A && C<=B){
+                    C+=N;
+                    System.out.println("C");
+                }
+            }
+        }        
+    }
+}
