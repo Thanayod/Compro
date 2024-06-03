@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Auction1 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int []box1 = new int[n];
+
+        for(int i=0; i<n; i++){
+            int j = scan.nextInt();
+            box1[i] = j;
+        }
+        int x = scan.nextInt();
+
+        for(int i=0; i<x; i++){
+            for(int j=0; j<n; j++){
+                int y = scan.nextInt();
+                if(box1[j] < y){
+                    box1[j] = y;
+                }
+                System.out.print(box1[j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
