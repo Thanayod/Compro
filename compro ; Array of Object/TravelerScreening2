@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+class Traveler2 {
+    String PassportID;
+    String country;
+    String day;
+    double temp;
+    int check;
+
+    Traveler2(String PassportID, String country, String day, double temp, int check) {
+        this.PassportID = PassportID;
+        this.country = country;
+        this.day = day;
+        this.temp = temp;
+        this.check = check;
+    }
+
+    void printInfo() {
+        if (check == -1) {
+            System.out.println(PassportID + " " + day);
+        }
+        else if(check == 0){
+            System.out.println(PassportID + " " + day);
+        }
+    }
+}
+
+public class TravelerScreening2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int check = ' ';
+        Traveler2[] travel = new Traveler2[n];
+        Traveler2[] travel2 = new Traveler2[n];
+        int tid = 0;
+        int maitid = 0;
+        
+        for (int i = 0; i < n; i++) {
+            String PassportID = sc.next();
+            String country = sc.next();
+            String day = sc.next();
+            double temp = sc.nextDouble();
+            
+            
+            if (country.equalsIgnoreCase("JAPAN") || country.equalsIgnoreCase("GERMANY")
+                    || country.equalsIgnoreCase("KOREA") ||
+                    country.equalsIgnoreCase("CHINA") || country.equalsIgnoreCase("TAIWAN")
+                    || country.equalsIgnoreCase("FRANCE") ||
+                    country.equalsIgnoreCase("SINGAPORE") || country.equalsIgnoreCase("ITALY")
+                    || country.equalsIgnoreCase("IRAN")) {
+                    check = -1;
+                    travel[i] = new Traveler2(PassportID, country, day, temp, check);
+                    tid++;
+            } else {
+                if (temp > 37.5) {
+                    check = -1;
+                    travel[i] = new Traveler2(PassportID, country, day, temp, check);
+                    tid++;
+                } else {
+                    check = 0;
+                    travel[i] = new Traveler2(PassportID, country, day, temp, check);
+                    maitid++;
+                }
+            }
+            //travel[i].printInfo();
+        }
+        System.out.println(tid);
+        for(int i=0; i<n; i++){
+            if(travel[i].check==-1){
+                travel[i].printInfo();
+            }
+        }
+        System.out.println(maitid);
+        for(int i=0; i<n; i++){
+            if(travel[i].check==0){
+                travel[i].printInfo();
+            }
+        }
+    }
+}
