@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+
+public class LongestString2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int max = Integer.MIN_VALUE;
+        String longestStr = " ";
+
+        for(int i=0; i<5; i++){
+            String str = scan.nextLine();
+            int x = str.length();
+            
+            if(x>max){
+                max = x;
+                longestStr = str;
+            }
+            
+        }
+        System.out.print(longestStr);
+        
+        
+    }
+}
