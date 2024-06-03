@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class StringCut {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        char word = scan.next().charAt(0);
+        boolean found = false;
+        boolean print = false;
+        int check = 0;
+
+
+        for(int i=0; i<str.length(); i++){
+            if(str.charAt(i)==word){
+                found = true;
+                if(check!=i){
+                    System.out.println(str.substring(check, i));
+                    print = true;
+                   
+                } 
+                check = i+1;
+            }
+            else if(i==str.length()-1 && check!=0){
+                found = true;
+                System.out.println(str.substring(check, str.length()));
+                print = true;
+            }
+        }
+        if(found==false){
+            System.out.print("no target character found");
+        }
+        else if(print==false){
+            System.out.print("no output");
+        }
+    }
+}
