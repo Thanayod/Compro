@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class ShotCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int map[][] = new int[n][m];
+        int countpass = 0;
+        int countmiss = 0;
+
+        int k = sc.nextInt();
+
+        for(int i=0; i<k; i++){
+            
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            if(x>0 && x<=n && y>0 && y<=m){
+                countpass++;
+            }
+            else {
+                countmiss++;
+            }
+        }
+        System.out.println(countpass);
+        System.out.println(countmiss);
+    }
+}
