@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Bus {
+    String id;
+    int type;
+    int seats;
+    int seat2 = 0;
+    int k;
+    boolean bus = true;
+    Bus(String id, int type, int seats){
+        this.id = id;
+        this.type = type;
+        this.seats = seats;
+    }
+    boolean reserve(int k){
+        if(k<1){
+            return false;
+        }
+        else if(seats-seat2<k){
+            return false;
+        }
+        else if(!bus){
+            return false;
+        }
+        else {
+            seat2+=k;
+            return true;
+        }
+    }
+    void sendToRepair(){
+        bus = false;
+    }
+    void backToService(){
+        bus = true;
+    }
+    void printStats() {
+        System.out.println(id);
+        if(type==1){
+            System.out.println("Fan");
+        }
+        else if(type==2){
+            System.out.println("P1");
+        }
+        else if(type==3){
+            System.out.println("VIP");
+        }
+        System.out.println(seat2 + " " + seats);
+        if(!bus){
+            System.out.println("Inactive");
+        }
+        else {
+            System.out.println("Active");
+        }
+    }
+}
+
+public class BusCompany2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String id = scan.next();
+        int type = scan.nextInt();
+        int seats = scan.nextInt();
+        Bus b = new Bus(id, type, seats);
+
+        int N = scan.nextInt();
+        for (int i = 0; i < N; ++i) {
+            int P = scan.nextInt();
+            int k = scan.nextInt();
+            if (P == 1)
+                b.reserve(k);
+            else if (P == 2)
+                b.sendToRepair();
+            else if (P == 3)
+                b.backToService();
+            b.printStats();
+        }
+    }
+}
