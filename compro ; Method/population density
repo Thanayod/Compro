@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class PopulationDensity {
+    int npeople;
+    int area;
+
+    static long density(int npeople, double area) {
+
+        long D = Math.round(area);
+        long a = Math.round(npeople / area);
+        return a;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int npeople = sc.nextInt();
+        double area = sc.nextDouble();
+        long d = density(npeople, area);
+
+        // long D = Math.round(area);
+        // System.out.println(D);
+        // long a = npeople / D;
+        // System.out.println(npeople);
+        // System.out.println(a);
+
+        System.out.println("population density is " + d);
+    }
+}
