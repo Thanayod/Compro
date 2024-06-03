@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+class Dept{
+    int ministryBudget;
+    int eduFee;
+    int serviceFee;
+    int donation;
+    int total_income;
+    int total_expense;
+    int salary;
+    int elec;
+    int eduCost;
+    int sum=0;
+
+    public Dept(int people, int student){
+        total_income = computeIncome(people, student);
+        total_expense = computeExpense(people, student);
+        sum = total_income-total_expense;
+    }
+
+    public int computeIncome(int people, int student){
+        ministryBudget = people*500_000 + student*3_000;
+        eduFee = student*5_000;
+        serviceFee = 300_000;
+        donation = 100_000;   
+        return ministryBudget+eduFee+serviceFee+donation;
+    }
+
+    public int computeExpense(int people, int student){
+        salary = people*600_000;
+        elec = (people+student)*2_000;
+        eduCost = student*4_000;
+        return salary+elec+eduCost;
+    }
+
+    void printReport(){
+        System.out.println("total income = " + total_income);
+        System.out.println("total expense = " + total_expense);
+        System.out.println("income - expense = " + sum);
+        System.out.println("ministry budget = " + ministryBudget);
+        System.out.println("education fee = " + eduFee);
+        System.out.println("service fee = " + serviceFee);
+        System.out.println("donation = " + donation);
+        System.out.println("salary = " + salary);
+        System.out.println("electricity = " + elec);
+        System.out.println("educational cost = " + eduCost);
+    }
+}
+public class Department2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int people = sc.nextInt();
+        int student = sc.nextInt();
+        Dept menu = new Dept(people, student); //เรียก class Dep มาเก็บไว้ใน menu.
+        menu.printReport(); // เรียก menu มาใช้.
+    }
+}
