@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+class Item {
+    boolean arrayx;
+    double weight;
+    double buy = 0;
+    double sale = 0;
+    String attgold;
+    String cmdline;
+
+    Item(boolean arrayx, double weight) {
+        this.arrayx = arrayx;
+        this.weight = weight;
+    }
+
+    Item(double weight) {
+        this.weight = weight;
+    }
+
+    double saleprice(double pricegold) {
+        if (arrayx) {
+            sale = ((pricegold * weight) + (1000 * weight));
+        } else {
+            sale = pricegold * weight;
+        }
+        return sale;
+    }
+
+    double buyprice(double pricegold) {
+        if (arrayx) {
+            buy = ((pricegold * weight) * (0.98));
+        } else {
+            buy = (pricegold - 100) * weight;
+        }
+        return buy;
+    }
+
+    void showdetail(double pricegold) {
+        if (arrayx) {
+            System.out.print("ornament " + weight + " baht");
+        } 
+        else if (!arrayx) {
+            System.out.print("bar " + weight + " baht");
+        }
+    }
+}
+
+public class SUGoldShop1 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        double pricegold = input.nextDouble();
+        Item[] arrayx = new Item[n];
+        for (int i = 0; i < n; i++) {
+            String cmdline = input.next();
+            String attgold = input.next();
+            double weight = input.nextDouble();
+            if (attgold.equalsIgnoreCase("t"))
+                arrayx[i] = new Item(true, weight);
+            else
+                arrayx[i] = new Item(false, weight);
+            arrayx[i].showdetail(pricegold);
+            if (cmdline.equalsIgnoreCase("s")) {
+                System.out.println(" sale " + arrayx[i].saleprice(pricegold));
+            } 
+            else if (cmdline.equalsIgnoreCase("b")) {
+                System.out.println(" buy " + arrayx[i].buyprice(pricegold));
+            }
+        }
+    }
+}
