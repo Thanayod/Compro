@@ -1,0 +1,116 @@
+import java.util.Scanner;
+
+class Product1 {
+    // Enter Your Code Here (from previous problem).
+    String name;
+    String sku;
+    double prices;
+    int weight;
+    boolean valid;
+    Product1(String name, String sku, double prices, int  weight){
+        this.name = name;
+        this.sku = sku;
+        this.prices = prices;
+        this.weight = weight;
+    }
+    boolean checkValidity(){
+        boolean check = true;
+        if(name==null || name.length()==0){
+            System.out.println("name is invalid");
+            check = false;
+        }
+        if(sku==null || sku.length()==0){
+            System.out.println("sku is invalid");
+            check = false;
+        }
+        if(prices<0){
+            System.out.println("price is invalid");
+            check = false;
+        }
+        if(weight<0){
+            System.out.println("weight is invalid");
+            check = false;
+        }
+        valid = check;
+        return valid;
+    }
+    void printInfo(){
+        if(valid){
+            System.out.println(name + ", " + sku + ", " +  prices + ", " + weight);
+        }
+        else {
+            System.out.println(name + ", " + sku + ", " +  prices + ", " + weight + ", Invalid");
+        }
+    }
+}
+
+class Shoe /* Your Code */extends Product1 {
+    // Enter Your Code Here
+    int gender;
+    int size;
+    int type;
+    String brand;
+    Product1 product;
+    Shoe(String name, String sku, double prices, int  weight, int gender, int size, int type, String brand){
+        super(name, sku, prices, weight);
+        this.gender = gender;
+        this.size = size;
+        this.type = type;
+        this.brand = brand;
+
+    }
+    @Override
+    void printInfo(){
+        super.printInfo();
+        if(gender == 1){
+            System.out.print("female, " + size + ", ");
+        }
+        else if(gender == 2){
+            System.out.print("male, " + size + ", ");
+        }
+        if(type == 1){
+            System.out.println("sport, " + brand);
+        }
+        else if(type == 2){
+            System.out.println("formal, " + brand);
+        }
+        else if(type == 3){
+            System.out.println("casual, " + brand);
+        }
+    }
+}
+
+public class ProductStore2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        /* Your Code */
+        Shoe[] sho = new Shoe[N];
+        for (int i = 0; i < N; ++i) {
+            scan.nextLine(); // throw away new-line char
+            String name = scan.nextLine();
+            String sku = scan.nextLine();
+            double prices = scan.nextDouble();
+            int weight = scan.nextInt();
+            int gender = scan.nextInt();
+            int size = scan.nextInt();
+            int type = scan.nextInt();
+            String brand = scan.next();
+            /* Your Code */
+            sho[i] = new Shoe(name, sku, prices, weight, gender, size, type, brand);
+        }
+
+        // Call checkVaidity of each product object.
+        for (int i = 0; i < N; ++i) {
+            /* Your Code */
+            boolean valid = sho[i].checkValidity();
+            System.out.println(valid);
+        }
+
+        // Call printInfo of each product object.
+        for (int i = 0; i < N; ++i) {
+            /* Your Code */
+            sho[i].printInfo();
+        }
+    }
+}
