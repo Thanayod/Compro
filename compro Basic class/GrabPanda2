@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+class FoodOrder {
+    String name;
+    int N;
+    int price;
+    int foodtotal = 0;
+    int Deli = 0;
+    int grandTotal = 0;
+    int rider = 0;
+    int grab = 0;
+
+    FoodOrder(String name) {
+        this.name = name;
+    }
+
+    int addFood(int price) {
+        foodtotal += price;
+        return foodtotal;
+    }
+
+    void finalizeReceipt() {
+        if (foodtotal <= 50) {
+            Deli = 20;
+        } else if (foodtotal > 50 && foodtotal <= 150) {
+            Deli = 10;
+        } else {
+            Deli = 0;
+        }
+        grandTotal = foodtotal + Deli;
+        System.out.println(name);
+        System.out.println(foodtotal);
+        System.out.println(Deli);
+        System.out.println(grandTotal);
+    }
+    void distribIncome(){
+        if(foodtotal <= 200){
+            rider = 20;
+        }
+        else if(foodtotal > 200){
+            rider = 30;
+        }
+        grab = (foodtotal*3)/10;
+        System.out.println("Rider: " + rider);
+        System.out.println("GrabPanda: " + grab);
+        System.out.println("Food Seller: " + (grandTotal - (rider+grab)));
+    }
+}
+
+public class GrabPanda2 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String name = scan.next();
+        int N = scan.nextInt();
+
+        FoodOrder order = new FoodOrder(name);
+        for (int i = 0; i < N; ++i) {
+            int price = scan.nextInt();
+            order.addFood(price);
+        }
+        order.finalizeReceipt();
+        order.distribIncome();
+    }
+}
