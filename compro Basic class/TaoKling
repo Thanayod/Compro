@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+class TaoKlingOrder {
+    int numMilk;
+    int numJuice;
+    int numMineralWater;
+    int total;
+    String phoneNo;
+    String code;
+    boolean completed;
+    TaoKlingOrder(String phoneNo, int numMilk, int numJuice, int numMineralWater, String code) {
+        this.numMilk = numMilk;
+        if(numMilk<0){
+            this.numMilk = 0;
+        }
+        this.numJuice = numJuice;
+        if(numJuice<0){
+            this.numJuice = 0;
+        }
+        this.numMineralWater = numMineralWater;
+        if(numMineralWater<0){
+            this.numMineralWater = 0;
+        }
+        if(phoneNo.charAt(0)!='0' || phoneNo.length()!=10){
+            System.out.println("invalid phone number");
+            this.phoneNo = "0#########";
+            this.completed = false;
+        }
+        else {
+            this.phoneNo = phoneNo;
+            this.completed = true;
+        }
+        this.code = code;
+        this.total = (10*numMilk)+(20*numJuice)+(15*numMineralWater);
+
+    }
+    boolean grabOrder(String phoneNo, String code){
+        if(this.phoneNo.equals(phoneNo) && this.code.equals(code)){
+            completed = true;
+            return true;
+        }
+        else {
+            completed = false;
+            return false;
+        }
+    }
+    void printInfo(){
+        System.out.print(phoneNo + " ");
+        System.out.print(numMilk + " ");
+        System.out.print(numJuice + " ");
+        System.out.print(numMineralWater + " ");
+        System.out.print(total + " ");
+        if(completed){
+            System.out.println('Y');
+        }
+        else {
+            System.out.println('N');
+        }
+    }
+}
+
+public class TaoKling {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String phoneNo = sc.next();
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        int n3 = sc.nextInt();
+        String code = sc.next();
+        TaoKlingOrder t = new TaoKlingOrder(phoneNo, n1, n2, n3, code);
+        String phone = sc.next();
+        String code1 = sc.next();
+        boolean flag = t.grabOrder(phone, code1);
+        System.out.println(flag);
+        t.printInfo();
+    }
+}
