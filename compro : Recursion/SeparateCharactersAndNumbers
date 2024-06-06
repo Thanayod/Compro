@@ -6,7 +6,14 @@ public class SeparateCharactersAndNumbers {
         if (msg.length() <= 1) {
             return msg;
         }
-        if (da.indexOf(msg.charAt(0)) == -1) {
+
+        // if (da.indexOf(msg.charAt(0)) == -1) {
+        //     return msg.charAt(0) + split(msg.substring(1));
+        // }
+        // return split(msg.substring(1)) + msg.charAt(0);
+        
+        char first = msg.charAt(0);
+        if(!Character.isDigit(first)){
             return msg.charAt(0) + split(msg.substring(1));
         }
         return split(msg.substring(1)) + msg.charAt(0);
