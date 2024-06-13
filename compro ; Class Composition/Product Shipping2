@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+class Product {
+    String name;
+    int weight;
+    int price;
+
+    Product(String name, int weight, int price) {
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+    }
+
+    void printInfo() {
+        System.out.println(weight + " grams of " + name + " costs " + price + " baht.");
+    }
+}
+
+class PurchaseOrder {
+    Product[] products;
+    int[] amount;
+    int n;
+    int all_price;
+    int all_weight;
+    PurchaseOrder(int n, Product[] products, int[] amount){
+        this.products = products;
+        this.amount = amount;
+        this.n = n;
+
+        for(int i=0; i<n; i++){
+            all_price += products[i].price * amount[i];
+            all_weight += products[i].weight * amount[i];
+        }
+    }
+    void printInfo(){
+        System.out.println(n + " items = " + all_price + " baht " + all_weight + " grams");
+        for(int i=0; i<n; i++){
+            System.out.println(products[i].name + " " + amount[i] + "x" + products[i].price + " = " + products[i].price*amount[i]);
+        }
+    }
+}
+
+public class ProductShipping2 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        Product[] products = new Product[n];
+        int[] amount = new int[n];
+        for (int i = 0; i < n; i++) {
+            String name = in.next();
+            int weight = in.nextInt();
+            int price = in.nextInt();
+            products[i] = new Product(name, weight, price);
+            amount[i] = in.nextInt();
+        }
+        PurchaseOrder po = new PurchaseOrder(n, products, amount);
+        po.printInfo();
+    }
+}
