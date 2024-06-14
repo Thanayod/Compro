@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class CovidScreening {
+    static void screenCovid(int insurance, int severity, int age, int vaccines) {
+        if (insurance == 1) {
+            System.out.println("RT-PCR recommended");
+        }
+        if (age >= 70 || severity == 3) {
+            System.out.println("Hospital admission");
+            if (severity == 2 || severity == 3) {
+                System.out.println("Favipiravia included");
+            }
+            else {
+                System.out.println("Standard medicine package");
+            }
+        }
+        else if (severity == 1 || severity == 2) {
+            System.out.println("Home isolation");
+            if (vaccines <= 2) {
+                System.out.println("Favipiravia included");
+            }
+            else {
+                System.out.println("Standard medicine package");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int insurance = scan.nextInt();
+        int severity = scan.nextInt();
+        int age = scan.nextInt();
+        int vaccines = scan.nextInt();
+        CovidScreening covid = new CovidScreening();
+
+        covid.screenCovid(insurance, severity, age, vaccines);
+    }
+}
