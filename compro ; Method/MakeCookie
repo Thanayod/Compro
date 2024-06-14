@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class MakeCookie {
+    static void calCookieBags(int flour, int butter) {
+        if((flour < 0 || flour > 100_000) && (butter < 0 || butter > 100_000)){
+            System.out.println("Cookie bags: Error");
+            System.out.println("Flour left: Invalid");
+            System.out.println("Butter left: Invalid");
+        }
+        else if(flour < 0 || flour > 100_000){
+            System.out.println("Cookie bags: Error");
+            System.out.println("Flour left: Invalid");
+            System.out.println("Butter left: " + butter);
+        }
+        else if(butter < 0 || butter > 100_000){
+            System.out.println("Cookie bags: Error");
+            System.out.println("Flour left: " + flour);
+            System.out.println("Butter left: Invalid");
+        }
+        else {
+            int f_bag = flour / 6;
+            int b_bag = butter/3;
+            int bag = f_bag;
+            if(b_bag<f_bag){
+                bag = b_bag;
+            }
+            System.out.println("Cookie bags: " + bag);
+            int f_left = flour - (bag*6);
+            System.out.println("Flour left: " + f_left);
+            int b_left = butter - (bag*3);
+            System.out.println("Butter left: " + b_left);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int flour = scan.nextInt();
+        int butter = scan.nextInt();
+        
+        calCookieBags(flour, butter);
+    }
+}
