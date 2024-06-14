@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+class Employee {
+    String name;
+    String ID;
+    int type;
+    int wage;
+    int exWork = 0;
+    int opWork = 0;
+
+    Employee(String name, String ID, int type, int wage) {
+        this.name = name;
+        this.ID = ID;
+        this.type = type;
+        this.wage = wage;
+    }
+
+    boolean workExecutive(int hex) {
+        if (hex > 0) {
+            exWork += hex;
+            return true;
+        } else {
+            System.out.println("Invalid hour for executive work");
+            return false;
+        }
+    }
+
+    boolean workOperation(int hop) {
+        if (hop > 0) {
+            opWork += hop;
+            return true;
+        } else {
+            System.out.println("Invalid hour for operation work");
+            return false;
+        }
+    }
+
+    int calPayment() {
+        int sum = 0;
+        if (type == 1) {
+            int ex = exWork * wage;
+            int op = opWork * (wage*2);
+            sum += ex + op;
+        } else if (type == 2) {
+            int ex = exWork * (wage*2);
+            int op = opWork * wage;
+            sum += ex + op;
+        }
+        return sum;
+    }
+
+    void printStats() {
+        System.out.println("ID: " + ID);
+        System.out.println("Name: " + name);
+        if (type == 1) {
+            System.out.println("Position: Executive");
+        } else if (type == 2) {
+            System.out.println("Position: Operation");
+        }
+        System.out.println("Ex Hour: " + exWork);
+        System.out.println("Op Hour: " + opWork);
+        System.out.println("Wage: " + wage);
+        System.out.println("Payment: " + calPayment());
+    }
+}
+
+public class HR {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String name = scan.next();
+        String ID = scan.next();
+        int type = scan.nextInt();
+        int wage = scan.nextInt();
+        Employee employee = new Employee(name, ID, type, wage);
+
+        final int N = scan.nextInt();
+        for (int i = 0; i < N; ++i) {
+            int workType = scan.nextInt();
+            int hour = scan.nextInt();
+            switch (workType) {
+                case 1:
+                boolean res_ex = employee.workExecutive(hour);
+                if(res_ex){
+                    System.out.println(res_ex + " " + employee.calPayment());
+                }
+                else {
+                    System.out.println(res_ex + " " + employee.calPayment());
+                }
+                break;
+                
+                case 2:
+                boolean res_op = employee.workOperation(hour);
+                    if(res_op){
+                        System.out.println(res_op + " " + employee.calPayment());
+                    }
+                    else {
+                        System.out.println(res_op + " " + employee.calPayment());
+                    }
+                    break;
+            }
+        }
+        employee.printStats();
+    }
+}
