@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class ThreeNumber {
+    static int max(int x, int y, int z) {
+        if (x > y && x > z) {
+            return x;
+        }
+        else if (y > x && y > z) {
+            return y;
+        }
+        else {
+            return z;
+        }
+    }
+    static int min(int x, int y, int z){
+        if (x < y && x < z) {
+            return x;
+        }
+        else if (y < x && y < z) {
+            return y;
+        }
+        else {
+            return z;
+        }
+    }
+    static int medium(int x, int y, int z){
+        if(x > y && x < z){
+            return x;
+        }
+        else if(x > z && x < y){
+            return x;
+        }
+        else if(y > x && y < z){
+            return y;
+        }
+        else if(y > z && y < x){
+            return y;
+        }
+        else if(z > x && z < y){
+            return z;
+        }
+        else {
+            return z;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        int y = sc.nextInt();
+        int z = sc.nextInt();
+        int num = sc.nextInt();
+
+        switch (num) {
+            case -1:
+                int min = min(x, y, z);
+                System.out.println(min);
+                break;
+        
+            case 1:
+                int max = max(x, y, z);
+                System.out.println(max);
+                break;
+            case 0:
+                int medium = medium(x, y, z);
+                System.out.println(medium);
+                break;
+        }
+    }
+}
