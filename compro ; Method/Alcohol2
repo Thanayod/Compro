@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Alcohol_1 {
+    int concentration;
+    int volume;
+    int type;
+    boolean Ethanol = true;
+    boolean Methanol = false;
+    int Alc;
+    int wet;
+    Alcohol_1(int concentration, int volume, int type){
+        if(type == 1){
+            Ethanol = false;
+        }
+        else {
+            Methanol = true;
+        }
+        if(concentration > 0){
+            this.concentration = concentration;
+        }
+        else {
+            this.concentration = 0;
+            System.out.println("invalid concentration");
+        }
+        if(volume > 0){
+            this.volume = volume;
+        }
+        else {
+            this.volume = 0;
+            System.out.println("invalid volume");
+        }
+    }
+    int dilute(int n_con, int n_vol){
+        Alc = (n_con*n_vol)/concentration;
+        this.wet = n_vol - Alc;
+        if(n_con > concentration){
+            System.out.println(n_con + " more than " + concentration);
+            return 0;
+        }
+        else {
+            return Alc;
+        }
+    }
+    
+    void printInfo(){
+        System.out.println(Alc + " " + wet);
+        if(volume - Alc <0){
+            System.out.println("NO");
+        }
+        else {
+            System.out.println("OK");
+        }
+    }
+}
+
+public class Alcohol2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int concentration = sc.nextInt();
+        int volume = sc.nextInt();
+        int type = sc.nextInt();
+
+        int n_con = sc.nextInt();
+        int n_vol = sc.nextInt();
+
+        Alcohol_1 al = new Alcohol_1(concentration, volume, type);
+        al.dilute(n_con, n_vol);
+        if(n_con < concentration){
+            al.printInfo();
+        }
+    }
+}
