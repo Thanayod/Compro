@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Mi2NMi {
+    double mi;
+    Mi2NMi(double mi){
+        this.mi = mi;
+    }
+    static double mi2nmi(double mi){
+        double nmi = 0.0;
+        nmi = mi * 0.868976;
+        return nmi;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double mi = sc.nextDouble();
+        System.out.println(mi2nmi(mi) + " nmi");
+    }
+}
